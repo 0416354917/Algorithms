@@ -1,11 +1,10 @@
 package leetcode;
 
-import java.util.ArrayList;
 import java.util.stream.IntStream;
 
 public class Solution {
 
-	public static int minSubArrayLen(int s, int[] nums) {
+	public int minSubArrayLen(int s, int[] nums) {
 		int n = nums.length;
 		int totalSum = IntStream.of(nums).sum();
 		if (totalSum == s) {
@@ -43,31 +42,17 @@ public class Solution {
 		}
 	}
 
-	public static void testMinSubArrayLen() {
+	public void testMinSubArrayLen() {
 		int s = 7;
 		int[] nums = { 2, 3, 1, 2, 4, 3, 7, 8, 5, 1, 1 };
 		System.out.println(minSubArrayLen(s, nums));
 	}
 
-	public static void main(String[] args) {
-		testMinSubArrayLen();
+	/**
+	 * Longest Palindromic Substring.
+	 */
+	public String longestPalindrome(String s) {
 
-		ArrayList<Integer> array = new ArrayList<Integer>();
-		ArrayList<String> array2 = new ArrayList<String>();
-		array.add(2);
-		array.add(3);
-		array.add(1);
-		array.sort(null);
-		for(int i : array) {
-			System.out.println(i);
-		}
-		array2.add("9");
-		array2.add("30");
-		array2.add("3");
-		array2.sort(null);
-		for(String s : array2) {
-			System.out.println(s);
-		}
+		return null;
 	}
-
 }
