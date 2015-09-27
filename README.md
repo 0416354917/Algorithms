@@ -1,2 +1,2 @@
-# COMP6466 - Algorithms
+# COMP6466
 ANU 2015 S1
