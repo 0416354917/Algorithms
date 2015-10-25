@@ -1,0 +1,50 @@
+6
+abab
+abababababababababab
+abababababab
+abc
+aaaaaa
+aabaabb aabaabb aabaabb aabaab
+
+
+1
+5 3
+ant
+top
+open
+apple
+lean
+anteplop
+antelope
+penleantopan
+
+
+
+
+1
+4
+4
+OXXX
+OXXX
+OXOX
+OOXO
+
+
+print 'BST!'
+print 'BST?'
+print '!BST'
+print '!BST'
+
+
+print '2'
+print 'Abcde_-!@#'
+print '0#T234<>?,'
+
+
+
+
+print 4
+print 2
+print 3
+print 3
+print 2
