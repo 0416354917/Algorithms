@@ -1,6 +1,4 @@
-# COMP6466
-ANU 2015 S1
----
+# COMP6466 - ANU 2015 S1
 
 ## List of Items
 | No. | Item |
