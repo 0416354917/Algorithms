@@ -1,0 +1,10 @@
+T1: a,b,e,f
+T2: a,b,c,e,f
+T3: c,d,e
+T4: b,c,e
+T5: a,b,c,e,f
+T6: b,c,e
+T7: b,c,f
+T8: a, b, c, d
+T9: a, c, d
+T10: c, e
