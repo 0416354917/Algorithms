@@ -220,8 +220,7 @@ public class Sorting {
 	}
 
 	public static void main(String[] args) {
-		int[] nums = { 1, 3, 2 };
-		mergeSort(nums);
+
 	}
 
 }
