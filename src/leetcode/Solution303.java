@@ -4,7 +4,7 @@ package leetcode;
  * Range Sum Query - Immutable.
  * 
  * <p>
- * <b>Status: MLE.</b>
+ * <b>Status: Accepted.</b>
  * </p>
  * 
  * @author Jason
@@ -13,20 +13,7 @@ package leetcode;
 public class Solution303 {
 	public class NumArray {
 		int[] array;
-		int[][] matrix;
-
-		public void printMatrix(int[][] matrix) {
-			int rows = matrix.length;
-			int cols = matrix[0].length;
-			for (int row = 0; row < rows; row++) {
-				for (int col = 0; col < cols; col++) {
-					System.out.print(matrix[row][col]);
-					if (col != cols - 1)
-						System.out.print(" ");
-				}
-				System.out.println();
-			}
-		}
+		int[] dp;
 
 		public NumArray(int[] nums) {
 			this.array = nums;
@@ -35,26 +22,10 @@ public class Solution303 {
 		}
 
 		public void init() {
-			this.matrix = new int[array.length][array.length];
-			for (int i = 0; i < array.length; i++) {
-				for (int j = 0; j < array.length; j++) {
-					matrix[i][j] = 0;
-				}
-			}
-			matrix[0][0] = array[0];
-			for (int col = 1; col < array.length; col++)
-				matrix[0][col] = matrix[0][col - 1] + array[col];
-			for (int row = 1; row < array.length; row++) {
-				for (int col = 0; col < array.length; col++) {
-					if (row > col)
-						continue;
-					else if (row == col) {
-						matrix[row][col] = array[row];
-					} else {
-						matrix[row][col] = matrix[row][col - 1] + array[col];
-					}
-				}
-			}
+			this.dp = new int[this.array.length];
+			this.dp[0] = this.array[0];
+			for (int i = 1; i < dp.length; i++)
+				dp[i] = dp[i - 1] + array[i];
 		}
 
 		public int sumRange(int i, int j) {
@@ -63,7 +34,9 @@ public class Solution303 {
 				return 0;
 			if (j >= this.array.length)
 				j = this.array.length - 1;
-			return this.matrix[i][j];
+
+			int min = (i == 0) ? 0 : dp[i - 1];
+			return this.dp[j] - min;
 		}
 	}
 
