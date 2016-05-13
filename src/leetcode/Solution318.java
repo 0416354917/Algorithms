@@ -4,9 +4,57 @@ import java.util.HashMap;
 import java.util.HashSet;
 
 /**
- * Status: TLE.
+ * Maximum Product of Word Lengths.
+ * 
+ * <p>
+ * <b>Status: Accepted.</b>
+ * </p>
+ * 
+ * @author Jason
  */
 public class Solution318 {
+
+	public int encode(String s) {
+		String[] t = new String[26];
+		for (int i = 0; i < s.length(); i++) {
+			t[s.charAt(i) - 97] = "1";
+		}
+		for (int i = 0; i < 26; i++) {
+			if (t[i] == null)
+				t[i] = "0";
+		}
+		return Integer.parseInt(String.join("", t), 2);
+	}
+
+	public int maxProduct(String[] words) {
+		if (words == null || words.length < 2)
+			return 0;
+
+		int answer = 0;
+
+		HashMap<String, Integer> map = new HashMap<String, Integer>();
+		for (String word : words) {
+			map.put(word, encode(word));
+		}
+
+		for (int i = 0; i < words.length - 1; i++) {
+			for (int j = i + 1; j < words.length; j++) {
+				if ((map.get(words[i]) & map.get(words[j])) == 0) {
+					answer = Math.max(answer,
+							words[i].length() * words[j].length());
+				}
+			}
+		}
+
+		return answer;
+	}
+
+	/**
+	 * <b>TLE.</b>
+	 * 
+	 * @param words
+	 * @return
+	 */
 	public int maxProduct2(String[] words) {
 		int answer = 0;
 
@@ -32,7 +80,7 @@ public class Solution318 {
 		return answer;
 	}
 
-	public int maxProduct(String[] words) {
+	public int maxProduct3(String[] words) {
 		int answer = 0;
 		for (int i = 0; i < words.length - 1; i++) {
 			for (int j = i + 1; j < words.length; j++) {
@@ -60,8 +108,10 @@ public class Solution318 {
 	}
 
 	public static void main(String[] args) {
+		System.out.println(Integer.parseInt("11", 2));
+
 		String[] words = { "abcw", "baz", "foo", "bar", "xtfn", "abcdef" };
-		System.out.println(new Solution318().maxProduct2(words));
+		System.out.println(new Solution318().maxProduct(words));
 	}
 
 }
