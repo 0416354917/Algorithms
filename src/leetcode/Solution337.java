@@ -1,12 +1,11 @@
 package leetcode;
 
-import java.util.LinkedList;
-import java.util.List;
-
 /**
  * House Robber III
  * 
- * Status: WA.
+ * <p>
+ * <b>Status: Accepted.</b>
+ * </p>
  * 
  * @author Jason
  *
@@ -24,52 +23,25 @@ public class Solution337 {
 	}
 
 	public int rob(TreeNode root) {
-		int result1 = 0, result2 = 0;
+		int money1 = 0, money2 = 0;
 
-		List<TreeNode> list;
-		List<TreeNode> list1 = new LinkedList<TreeNode>();
-		List<TreeNode> list2 = new LinkedList<TreeNode>();
-
-		if (root == null)
+		if (root == null) {
 			return 0;
-
-		list1.add(root);
-		result1 = root.val;
-		list = list1;
-		while (!list.isEmpty()) {
-			TreeNode node = list.remove(0);
-
-			if (list == list1) {
-				if (node.left != null) {
-					list2.add(node.left);
-					result2 += node.left.val;
-				}
-				if (node.right != null) {
-					list2.add(node.right);
-					result2 += node.right.val;
-				}
-				if (list.isEmpty()) {
-					list = list2;
-					continue;
-				}
-			}
-
-			if (list == list2) {
-				if (node.left != null) {
-					list1.add(node.left);
-					result1 += node.left.val;
-				}
-				if (node.right != null) {
-					list1.add(node.right);
-					result1 += node.right.val;
-				}
-				if (list.isEmpty())
-					list = list1;
-			}
-
+		} else if (root.left == null && root.right == null) {
+			return root.val;
+		} else if (root.left != null && root.right == null) {
+			money1 = root.val + rob(root.left.left) + rob(root.left.right);
+			money2 = rob(root.left);
+		} else if (root.left == null && root.right != null) {
+			money1 = root.val + rob(root.right.left) + rob(root.right.right);
+			money2 = rob(root.right);
+		} else {
+			money1 = root.val + rob(root.left.left) + rob(root.left.right)
+					+ rob(root.right.left) + rob(root.right.right);
+			money2 = rob(root.left) + rob(root.right);
 		}
 
-		return result1 > result2 ? result1 : result2;
+		return money1 > money2 ? money1 : money2;
 	}
 
 	public static void main(String[] args) {
