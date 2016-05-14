@@ -1,5 +1,15 @@
 package leetcode;
 
+/**
+ * Helper.
+ * 
+ * <p>
+ * <b>Status: Accepted.</b>
+ * </p>
+ * 
+ * @author Jason
+ *
+ */
 public class Helper {
 
 	public class ListNode {

@@ -88,13 +88,13 @@ public class NQueens {
 	}
 
 	public static void solveNQueens(int n) {
-		if(n < 4) {
+		if (n < 4) {
 			System.out.println("n should be at least 4!");
 			System.exit(0);
 		}
-		
+
 		int[][] solution = new int[n][n];
-		
+
 	}
 
 	public static void main(String[] args) {

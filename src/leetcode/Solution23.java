@@ -108,7 +108,6 @@ public class Solution23 {
 			p1 = p1.next;
 		}
 		System.out.println("null");
-
 	}
 
 }
