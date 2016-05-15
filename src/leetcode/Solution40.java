@@ -14,45 +14,7 @@ import java.util.List;
  * @author Jason
  *
  */
-
 public class Solution40 {
-
-	public void bt2(List<List<Integer>> ans, List<Integer> a, int target,
-			int[] cand) {
-		if (target < 0 || (target > 0 && a.size() == cand.length))
-			return;
-
-		if (target == 0) {
-			ans.add(a);
-			return;
-		}
-
-		for (int i = a.size(); i < cand.length; i++) {
-			int offset = 0;
-			if (a.size() != 0) {
-				int last = a.get(a.size() - 1);
-				if (cand[i] < last)
-					continue;
-				if (cand[i] == last) {
-					int firstIndex = a.indexOf(last);
-					int lastIndex = a.lastIndexOf(last);
-					offset = lastIndex - firstIndex + 1;
-					while (i > 0 && cand[i - 1] == cand[i]) {
-						i--;
-					}
-					i += offset;
-				}
-			}
-
-			List<Integer> a2 = new ArrayList<Integer>();
-			for (int j = 0; j < a.size(); j++)
-				a2.add(a.get(j));
-			a2.add(cand[i]);
-
-			bt2(ans, a2, target - cand[i], cand);
-		}
-
-	}
 
 	public void bt(List<List<Integer>> ans, List<Integer> a, int target,
 			int[] cand, int startIndex) {
