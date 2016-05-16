@@ -21,6 +21,16 @@ public class Helper {
 		}
 	}
 
+	public class TreeNode {
+		int val;
+		TreeNode left;
+		TreeNode right;
+
+		TreeNode(int x) {
+			val = x;
+		}
+	}
+
 	public static void printMatrix(int[][] matrix) {
 		int rows = matrix.length;
 		int cols = matrix[0].length;
