@@ -1,10 +1,15 @@
 package leetcode;
 
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.LinkedList;
+import java.util.List;
+
 /**
  * Merge k Sorted Lists.
  * 
  * <p>
- * <b>Status: TLE.</b>
+ * <b>Status: Accepted.</b>
  * </p>
  * 
  * @author Jason
@@ -22,6 +27,67 @@ public class Solution23 {
 	}
 
 	public ListNode mergeKLists(ListNode[] lists) {
+		// corner cases.
+		if (lists == null)
+			return null;
+
+		ListNode head = new ListNode(0);
+		ListNode p = head;
+		List<ListNode> nodes = new LinkedList<ListNode>();
+		for (ListNode x : lists) {
+			if (x != null) {
+				nodes.add(x);
+			}
+		}
+		Collections.sort(nodes, new Comparator<ListNode>() {
+
+			@Override
+			public int compare(ListNode o1, ListNode o2) {
+				// TODO Auto-generated method stub
+				if (o1.val < o2.val)
+					return -1;
+				else if (o1.val == o2.val)
+					return 0;
+				else
+					return 1;
+			}
+
+		});
+
+		while (!nodes.isEmpty()) {
+			ListNode next = nodes.get(0);
+
+			// update p:
+			p.next = next;
+			p = p.next;
+
+			// update lists:
+			nodes.remove(0);
+			next = next.next;
+			if (next != null) {
+				int index = 0;
+				for (; index < nodes.size(); index++) {
+					if (next.val <= nodes.get(index).val) {
+						nodes.add(index, next);
+						break;
+					}
+				}
+				if (index == nodes.size()) {
+					nodes.add(next);
+				}
+			}
+		}
+
+		return head.next;
+	}
+
+	/**
+	 * TLE solution.
+	 * 
+	 * @param lists
+	 * @return
+	 */
+	public ListNode mergeKLists1(ListNode[] lists) {
 		// corner cases.
 		if (lists == null || lists.length == 0)
 			return null;
