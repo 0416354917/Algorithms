@@ -2,9 +2,16 @@ package leetcode;
 
 /**
  * Trapping Rain Water.
+ * <p>
+ * The idea is very simple. Begin scan from beginning and end of array. Compare
+ * value of left and right pointer, hold the greater one and move the other to
+ * inner array. Compute passed area when pointer gets inner. (
+ * {@link https://leetcode.com/discuss/63606/very-concise-java-solution-no-stack-with-explanations}
+ * )
+ * </p>
  * 
  * <p>
- * <b>Status: TLE.</b>
+ * <b>Status: Accepted.</b>
  * </p>
  * 
  * @author Jason
@@ -17,42 +24,20 @@ public class Solution42 {
 			return 0;
 
 		int ans = 0;
-		int i = 0;
-		while (i < height.length - 1) {
-			if (height[i] <= height[i + 1])
-				i++;
-			else
-				break;
-		}
-		while (i < height.length - 2) {
-			// System.out.println("i = " + i);
 
-			int j = i;
-			while (j < height.length - 1 && height[j + 1] < height[j]) {
-				j++;
+		int left = 0;
+		int right = height.length - 1;
+		int secMaxHeight = 0;
+		while (left < right) {
+			if (height[left] < height[right]) {
+				secMaxHeight = Math.max(secMaxHeight, height[left]);
+				ans += secMaxHeight - height[left];
+				left++;
+			} else {
+				secMaxHeight = Math.max(secMaxHeight, height[right]);
+				ans += secMaxHeight - height[right];
+				right--;
 			}
-			if (j >= height.length - 1)
-				break;
-			// System.out.println("j = " + j);
-
-			int k = j;
-			while (k < height.length - 1 && height[k + 1] >= height[k]) {
-				k++;
-			}
-			// System.out.println("k = " + k);
-
-			int i2 = j - 1;
-			while (i2 >= i + 1 && height[i2] < height[k]) {
-				i2--;
-			}
-
-			int subans = (k - i2 - 1) * Math.min(height[i2], height[k]);
-			for (int t = i2 + 1; t < k; t++)
-				subans -= height[t];
-			ans += subans;
-			i = k;
-
-			// System.out.println("ans = " + ans);
 		}
 
 		return ans;
