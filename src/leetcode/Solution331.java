@@ -13,6 +13,7 @@ import java.util.Stack;
  *
  */
 public class Solution331 {
+
 	public boolean isValidSerialization(String preorder) {
 		if (preorder == null || preorder.length() == 0)
 			return false;
@@ -20,27 +21,22 @@ public class Solution331 {
 		if (preorder.equals("#"))
 			return true;
 
-		Stack<String> stack = new Stack<String>();
-		Stack<Integer> stack2 = new Stack<Integer>();
+		Stack<Integer> stack = new Stack<Integer>();
 		String[] s = preorder.split(",");
 		if (s[0].equals("#")) {
 			return false;
 		}
-		stack.push(s[0]);
-		stack2.push(0);
+		stack.push(0);
 		int index = 1;
 		while (index < s.length) {
 			if (!s[index].equals("#")) {
-				stack.push(s[index]);
-				stack2.push(0);
+				stack.push(0);
 			} else {
-				stack2.set(stack2.size() - 1, stack2.peek() + 1);
-				if (stack2.peek().intValue() != 2) {
-					stack.push("#");
-					stack2.push(1);
+				stack.set(stack.size() - 1, stack.peek() + 1);
+				if (stack.peek().intValue() != 2) {
+					stack.push(1);
 				} else {
-					while (stack2.peek().intValue() == 2) {
-						stack2.pop();
+					while (stack.peek().intValue() == 2) {
 						stack.pop();
 						if (stack.isEmpty()) {
 							if (index != s.length - 1)
@@ -48,7 +44,7 @@ public class Solution331 {
 							else
 								return true;
 						}
-						stack2.set(stack2.size() - 1, stack2.peek() + 1);
+						stack.set(stack.size() - 1, stack.peek() + 1);
 					}
 				}
 			}

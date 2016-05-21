@@ -4,7 +4,15 @@ package leetcode;
  * Helper.
  * 
  * <p>
- * <b>Status: Accepted.</b>
+ * <b>Description: </b> ...
+ * </p>
+ * 
+ * <p>
+ * <b>Algorithm: </b>...
+ * </p>
+ * 
+ * <p>
+ * <b>Status: </b>...
  * </p>
  * 
  * @author Jason
