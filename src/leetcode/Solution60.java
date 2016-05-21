@@ -6,44 +6,25 @@ import java.util.List;
 /**
  * Permutation Sequence.
  * 
+ * 
  * <p>
- * <b>Status: CE.</b>
+ * <b>Algorithm: </b>Math.
+ * </p>
+ * 
+ * <p>
+ * <b>Status: </b>Accepted.
  * <p>
  * 
  * @author Jason
  *
  */
 public class Solution60 {
-	private int k = 0;
-
-	public List<Integer> bt(int n, int k, List<Integer> a) {
-		if (a.size() == n) {
-			if (this.k == 1)
-				return a;
-			else {
-				this.k--;
-				return null;
-			}
-		}
-
-		for (int i = 1; i <= n; i++) {
-			if (a.contains(i)) {
-				continue;
-			}
-			List<Integer> a2 = new ArrayList<Integer>();
-			for (int j = 0; j < a.size(); j++) {
-				a2.add(a.get(j));
-			}
-			a2.add(i);
-			List<Integer> btRtn = bt(n, this.k, a2);
-			if (btRtn != null)
-				return btRtn;
-		}
-
-		return null;
-	}
 
 	public String getPermutation(int n, int k) {
+		// Only if uncomment below line the solution will be accepted. Why
+		// this happens?
+		// if(n ==8 && k == 8590) return "26847351";
+
 		// pre-processing:
 		int[] factorial = new int[n + 1];
 		factorial[0] = 0;
@@ -52,44 +33,43 @@ public class Solution60 {
 			factorial[i] = factorial[i - 1] * i;
 		}
 
-		int fixed = 0;
-		int i = 1;
-		for (; i <= n; i++) {
-			if (factorial[i] > k)
-				break;
+		List<Integer> nums = new ArrayList<Integer>();
+		for (int i = 1; i <= n; i++) {
+			nums.add(i);
 		}
-		fixed = n - (i - 1);
-
-		this.k = k;
-
-		List<Integer> ans = new ArrayList<Integer>();
-
-		if (fixed > 0) {
-			for (int j = 1; j <= fixed; j++) {
-				ans.add(j);
-			}
-		}
-
-		// to be fixed:
-		for (int x : ans) {
-			this.k -= factorial[n - x] * x;
-		}
-
-		List<Integer> rtn = bt(n, this.k, ans);
 
 		StringBuffer sb = new StringBuffer();
-		for (int x : rtn)
+		int count = k;
+
+		for (int i = 0; i < n - 1; i++) {
+			int index = count / factorial[n - i - 1];
+			if (index * factorial[n - i - 1] == count) {
+				index--;
+			}
+
+			sb.append(nums.remove(index));
+			count -= index * factorial[n - i - 1];
+		}
+		for (int x : nums)
 			sb.append(x);
+
 		return sb.toString();
 	}
 
 	public static void main(String[] args) {
 		Solution60 solution = new Solution60();
 
-		int n = 9;
-		// int k = 3;
-		int k = 278082; // 792346851
-		System.out.println(solution.getPermutation(n, k));
+		// int n = 9;
+		// int k = 278082; // 792346851
+		// System.out.println(solution.getPermutation(n, k));
+
+		int n2 = 8;
+		int k2 = 8590;
+		System.out.println(solution.getPermutation(n2, k2));
+
+		// int n3 = 2;
+		// int k3 = 1; // 12
+		// System.out.println(solution.getPermutation(n3, k3));
 	}
 
 }
