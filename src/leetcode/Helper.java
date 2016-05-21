@@ -4,7 +4,7 @@ package leetcode;
  * Helper.
  * 
  * <p>
- * <b>Description: </b> ...
+ * <b>Description: </b>...
  * </p>
  * 
  * <p>
