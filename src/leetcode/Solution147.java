@@ -21,9 +21,12 @@ public class Solution147 {
 		if (head == null || head.next == null)
 			return head;
 
-		ListNode p = head.next, q;
+		ListNode p = head.next, q = head;
 		while (p != null) {
-
+			ListNode r = p.next; 
+			while(p.val > q.val) {
+				
+			}
 			p = p.next;
 		}
 

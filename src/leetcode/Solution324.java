@@ -15,7 +15,7 @@ public class Solution324 {
 	public int kthSmallest(int[] nums, int left, int right, int k) {
 		int p = partition(nums, left, right);
 		if (p == k - 1)
-			return p;
+			return nums[p];
 		else if (p > k - 1) {
 			return kthSmallest(nums, left, p, k);
 		} else {
@@ -47,20 +47,23 @@ public class Solution324 {
 		System.out.println("k = " + k);
 		// find the kth smallest/largest num in nums:
 		int p = kthSmallest(nums, 0, nums.length, k);
-		System.out.println("p = " + p);
-		// int insertPosition = 1;
-		// for (int i = p + 1; i < nums.length; i++) {
-		// int t = nums[insertPosition];
-		// nums[insertPosition] = nums[i];
-		// nums[i] = t;
-		// insertPosition += 2;
-		// }
+		System.out.println("nums[p] = " + p);
+//		int insertPosition = 1;
+//		for (int i = k; i < nums.length; i += 1) {
+//			if ((i + 1) % 2 == 0)
+//				continue;
+//			int t = nums[insertPosition];
+//			nums[insertPosition] = nums[i];
+//			nums[i] = t;
+//			insertPosition += 2;
+//		}
 	}
 
 	public static void main(String[] args) {
 		Solution324 solution = new Solution324();
 
-		int[] nums = { 1, 5, 1, 1, 6, 4 };
+		// int[] nums = { 1, 5, 1, 1, 6, 4 };
+		int[] nums = { 1, 3, 2, 2, 3, 1 };
 		solution.wiggleSort(nums);
 
 		for (int num : nums)
