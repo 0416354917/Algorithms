@@ -39,6 +39,19 @@ public class Helper {
 		}
 	}
 
+	/**
+	 * In-order traversal of a binary tree.
+	 * 
+	 * @param root
+	 */
+	public void inorder(TreeNode root) {
+		if (root != null) {
+			inorder(root.left);
+			System.out.print(root.val + "  ");
+			inorder(root.right);
+		}
+	}
+
 	public static void printMatrix(int[][] matrix) {
 		int rows = matrix.length;
 		int cols = matrix[0].length;
