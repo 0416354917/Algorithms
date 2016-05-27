@@ -12,7 +12,7 @@ package leetcode;
  * </p>
  * 
  * <p>
- * <b>Status: </b>...
+ * <b>Status: </b>Accepted.
  * </p>
  * 
  * @author Jason
@@ -33,23 +33,36 @@ public class Solution147 {
 		if (head == null || head.next == null)
 			return head;
 
-		ListNode p = null, q = head;
-		ListNode qPre = null;
-		while (q != null) {
-			ListNode r = q.next;
-			while (r != null && q.val > r.val) {
-				qPre = r;
-				r = r.next;
-			}
-			if (qPre != null) {
-				qPre.next = q;
-			}
-			q.next = r;
+		ListNode p1pre = null, p1 = head, p2 = p1.next, p3 = p2.next,
+				p2pre = head;
 
-			q = q.next;
+		while (p2 != null) {
+			p1 = head;
+			p1pre = null;
+
+			p3 = p2.next;
+			if (p2.val <= p1.val) {
+				head = p2;
+				p2.next = p1;
+				p2pre.next = p3;
+				p2 = p3;
+			} else {
+				while (p1.val < p2.val) {
+					p1pre = p1;
+					p1 = p1.next;
+				}
+				if (p1 != p2) {
+					p1pre.next = p2;
+					p2.next = p1;
+					p2pre.next = p3;
+				} else {
+					p2pre = p2;
+				}
+				p2 = p3;
+			}
 		}
 
-		return p;
+		return head;
 	}
 
 	public static void main(String[] args) {
@@ -67,9 +80,10 @@ public class Solution147 {
 
 		ListNode head = solution.insertionSortList(p1);
 		while (head != null) {
-			System.out.println(head.val);
+			System.out.print(head.val + "  ");
 			head = head.next;
 		}
+		System.out.println();
 	}
 
 }
