@@ -10,7 +10,7 @@
 * \#301
 * [\#315. Count of Smaller Numbers After Self](https://leetcode.com/problems/count-of-smaller-numbers-after-self/): TLE
 * \#329
-* [\#330. Patching Array](https://leetcode.com/problems/patching-array/)
+* [\#330. Patching Array](https://leetcode.com/problems/patching-array/): AC
 
 # Algorithms:
 * Binary Indexed Tree
