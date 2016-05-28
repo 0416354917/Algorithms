@@ -1,5 +1,4 @@
 # TODO:
-* [\#23. Merge k Sorted Lists](https://leetcode.com/problems/merge-k-sorted-lists/): TLE
 * \#29
 * [\#37. Sudoku Solver](https://leetcode.com/problems/sudoku-solver/): WA
 * \#39
@@ -14,4 +13,6 @@
 * [\#330. Patching Array](https://leetcode.com/problems/patching-array/)
 
 # Algorithms:
-* Binary Index Tree
+* Binary Indexed Tree
+* Segment Tree
+* Two Pointers
