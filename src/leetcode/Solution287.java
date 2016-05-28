@@ -31,7 +31,7 @@ package leetcode;
  * </p>
  * 
  * <p>
- * <b>Status: </b>...
+ * <b>Status: </b>Accepted.
  * </p>
  * 
  * @author Jason

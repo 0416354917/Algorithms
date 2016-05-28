@@ -12,6 +12,11 @@ package leetcode;
  * </p>
  * 
  * <p>
+ * <b>Reference: </b>
+ * {@link https://leetcode.com/discuss/87685/template-subarray-substring-substring-repeating-characters}
+ * </p>
+ * 
+ * <p>
  * <b>Status: </b>...
  * </p>
  * 

@@ -54,22 +54,37 @@ public class Solution87 {
 	}
 
 	public boolean isScramble(String s1, String s2) {
-		// s1 and s2 is guaranteed to have the same length.
 		if (s1 == null || s1.length() == 0)
 			return true;
 
-		if (!compareSubStr(s1, s2))
-			return false;
-		else {
-			if (s1.length() < 3) {
-				return true;
+		int[] smallAlp = new int[26];
+		int[] upperAlp = new int[26];
+		for (int i = 0; i < s1.length(); i++) {
+			if (Character.isLowerCase(s1.charAt(i))) {
+				smallAlp[s1.charAt(i) - 'a']++;
+			} else {
+				upperAlp[s1.charAt(i) - 'A']++;
+			}
+
+			if (Character.isLowerCase(s2.charAt(i))) {
+				smallAlp[s2.charAt(i) - 'a']--;
+			} else {
+				upperAlp[s2.charAt(i) - 'A']--;
 			}
 		}
 
-		for (int i = 0; i < s1.length() - 1; i++) {
-			String s3 = s1.substring(0, i + 1);
-			String s4 = s2.substring(0, i + 1);
-			if (compareSubStr(s3, s4))
+		for (int i = 0; i < 26; i++) {
+			if (smallAlp[i] != 0 || upperAlp[i] != 0)
+				return false;
+		}
+
+		for (int i = 1; i < s1.length(); i++) {
+			if (isScramble(s1.substring(0, i), s2.substring(0, i))
+					&& isScramble(s1.substring(i), s2.substring(i)))
+				return true;
+			if (isScramble(s1.substring(0, i), s2.substring(s2.length() - i))
+					&& isScramble(s1.substring(i),
+							s2.substring(0, s2.length() - i)))
 				return true;
 		}
 
