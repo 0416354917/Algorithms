@@ -12,12 +12,11 @@ package leetcode;
  * </p>
  * 
  * <p>
- * <b>Reference: </b>
- * {@link https://leetcode.com/discuss/87685/template-subarray-substring-substring-repeating-characters}
+ * <b>Reference: </b>...
  * </p>
  * 
  * <p>
- * <b>Note: </b>
+ * <b>Note: </b>...
  * <p>
  * 
  * <p>
@@ -38,6 +37,12 @@ public class Helper {
 		}
 	}
 
+	/**
+	 * Definition for a binary tree node.
+	 * 
+	 * @author Jason
+	 *
+	 */
 	public class TreeNode {
 		int val;
 		TreeNode left;
