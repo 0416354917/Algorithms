@@ -1,12 +1,39 @@
 package leetcode;
 
-import java.util.HashMap;
-
 /**
  * Add and Search Word - Data structure design.
  * 
  * <p>
- * <b>Status: TLE.</b>
+ * <b>Description: </b>
+ * 
+ * Design a data structure that supports the following two operations:
+ * 
+ * void addWord(word) bool search(word) search(word) can search a literal word
+ * or a regular expression string containing only letters a-z or .. A . means it
+ * can represent any one letter.
+ * 
+ * For example:
+ * 
+ * addWord("bad") addWord("dad") addWord("mad") search("pad") -> false
+ * search("bad") -> true search(".ad") -> true search("b..") -> true Note: You
+ * may assume that all words are consist of lowercase letters a-z.
+ * </p>
+ * 
+ * <p>
+ * <b>Algorithm: </b>Backtracking, Trie, Design.
+ * </p>
+ * 
+ * <p>
+ * <b>Reference: </b>
+ * {@link https://leetcode.com/discuss/92820/trie-tree-java-solution-very-easy-to-understand}
+ * </p>
+ * 
+ * <p>
+ * <b>Note: </b>...
+ * <p>
+ * 
+ * <p>
+ * <b>Status: </b>TLE.
  * </p>
  * 
  * @author Jason
@@ -14,20 +41,20 @@ import java.util.HashMap;
  */
 public class Solution211 {
 
-	class TrieNode {
-		String key = null;
-		HashMap<String, TrieNode> children = new HashMap<String, TrieNode>();
-
-		public TrieNode() {
-
-		}
-
-		public TrieNode(String key) {
-			this.key = key;
-		}
-	}
-
 	public class WordDictionary {
+
+		class TrieNode {
+
+			TrieNode[] children = new TrieNode[26];
+
+			boolean flag = false;
+
+			public TrieNode() {
+
+			}
+
+		}
+
 		TrieNode root;
 
 		public WordDictionary() {
@@ -40,19 +67,13 @@ public class Solution211 {
 				return;
 
 			TrieNode p = root;
-			for (int i = 0; i < word.length(); i++) {
-				String s = word.substring(i, i + 1);
-				if (p.children.containsKey(s))
-					p = p.children.get(s);
-				else {
-					TrieNode q = new TrieNode(s);
-					p.children.put(s, q);
-					p = q;
+			for (char x : word.toCharArray()) {
+				if (p.children[x - 'a'] == null) {
+					p.children[x - 'a'] = new TrieNode();
 				}
+				p = p.children[x - 'a'];
 			}
-			if (!p.children.containsKey("#"))
-				p.children.put("#", new TrieNode("#"));
-
+			p.flag = true;
 		}
 
 		// Returns if the word is in the data structure. A word could
@@ -61,30 +82,31 @@ public class Solution211 {
 			if (word == null)
 				return true;
 
-			TrieNode p = root;
-			int i = 0;
-			for (; i < word.length(); i++) {
-				String key = word.substring(i, i + 1);
-				if (key.equals(".")) {
-					StringBuffer sb = new StringBuffer(word);
-					for (char ch = 'a'; ch <= 'z'; ch++) {
-						sb.setCharAt(i, ch);
-						if (search(sb.toString())) {
-							return true;
-						}
-					}
-				} else {
-					if (!p.children.containsKey(key)) {
+			return bt(word, root, 0);
+		}
+
+		public boolean bt(String word, TrieNode root, int index) {
+			if (index == word.length()) {
+				return root.flag;
+			} else if (word.charAt(index) != '.') {
+				TrieNode p = root;
+				while (index < word.length() && word.charAt(index) != '.') {
+					p = p.children[word.charAt(index) - 'a'];
+					if (p == null) {
 						return false;
-					} else {
-						p = p.children.get(key);
 					}
+					index++;
+				}
+				return bt(word, p, index);
+			} else {
+				TrieNode[] children = root.children;
+				for (TrieNode child : children) {
+					if (child != null && bt(word, child, index + 1))
+						return true;
 				}
 			}
-			if (i == word.length() && p.children.containsKey("#"))
-				return true;
-			else
-				return false;
+
+			return false;
 		}
 	}
 
@@ -95,7 +117,7 @@ public class Solution211 {
 		words.addWord("word");
 		System.out.println(words.search("words"));
 		System.out.println(words.search("word"));
-		// System.out.println(words.search("......"));
+		System.out.println(words.search("."));
 	}
 
 }
