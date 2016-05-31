@@ -2,6 +2,8 @@ package interview;
 
 /**
  * Common sorting algorithms.
+ * 
+ * @author Jason
  */
 public class Sorting {
 
@@ -208,12 +210,15 @@ public class Sorting {
 	 * @param nums
 	 */
 	public static void bubbleSort(int[] nums) {
-		for (int i = 0; i < nums.length - 1; i++) {
-			for (int j = 1; j < nums.length; j++) {
-				if (nums[j] < nums[j - 1]) {
+		boolean swapped = true;
+		for (int i = 1; i < nums.length && swapped; i++) {
+			swapped = false;
+			for (int j = 0; j < nums.length - i; j++) {
+				if (nums[j] > nums[j + 1]) {
 					int t = nums[j];
-					nums[j] = nums[j - 1];
-					nums[j - 1] = t;
+					nums[j] = nums[j + 1];
+					nums[j + 1] = t;
+					swapped = true;
 				}
 			}
 		}

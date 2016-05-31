@@ -4,7 +4,7 @@ package leetcode;
  * Wiggle Sort II.
  * 
  * <p>
- * <b>Status: .</b>
+ * <b>Status: RE.</b>
  * </p>
  * 
  * @author Jason
@@ -49,11 +49,6 @@ public class Solution324 {
 
 		int k = nums.length - nums.length / 2;
 		kthSmallest(nums, 0, nums.length, k);
-
-//		System.out.println("p = " + p);
-//		for (int num : nums)
-//			System.out.print(num + "  ");
-//		System.out.println();
 
 		int p = k - 1;
 		int t = nums[1];
