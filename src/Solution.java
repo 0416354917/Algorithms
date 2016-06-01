@@ -1,94 +1,65 @@
-import java.util.Scanner;
+import java.util.Comparator;
 
-public class Solution {
-	static int[][] matrix;
+public class Solution implements Sorter {
+
+	@Override
+	public <T extends Comparable<T>> void insertionSort(T[] arr) {
+		for (int i = 1; i < arr.length; i++) {
+			int j = i - 1;
+			T iCopy = arr[i];
+			while (j >= 0 && arr[j].compareTo(iCopy) > 0) {
+				arr[j + 1] = arr[j];
+				j--;
+			}
+			arr[j + 1] = iCopy;
+		}
+	}
+
+	@Override
+	public <T> void selectionSort(T[] arr, Comparator<T> cmp) {
+		for (int i = 0; i < arr.length - 1; i++) {
+			int minIndex = i;
+			T minValue = arr[minIndex];
+			for (int j = i + 1; j < arr.length; j++) {
+				if (cmp.compare(arr[j], minValue) < 0) {
+					minIndex = j;
+					minValue = arr[j];
+				}
+			}
+			T temp = arr[i];
+			arr[i] = arr[minIndex];
+			arr[minIndex] = temp;
+		}
+	}
 
 	public static void main(String[] args) {
-		Scanner scanner = new Scanner(System.in);
-		int row = scanner.nextInt();
-		int col = scanner.nextInt();
+		// Queue<Person> q = new PriorityQueue<>();
+		//
+		// q.add(new Person(3, "c"));
+		// q.add(new Person(2, "b"));
+		// q.add(new Person(1, "a"));
+		//
+		// while (!q.isEmpty()) {
+		// System.out.println(q.poll().id);
+		// }
 
-		matrix = new int[row][col];
+		Integer[] nums = { 5, 1, 6, 2, 3, 1, 3, 4, 7 };
+		// int[] sortedNums = { 1, 1, 2, 3, 3, 4, 5, 6, 7 };
 
-		int[][] block = initialBlock(row, col);
-		while (scanner.hasNextLine()) {
-			String action = scanner.next();
-			int tlr = scanner.nextInt();
-			int tlc = scanner.nextInt();
-			int brr = scanner.nextInt();
-			int brc = scanner.nextInt();
+		Solution sol = new Solution();
+		// sol.insertionSort(nums);
+		sol.selectionSort(nums, new Comparator<Integer>() {
 
-			artBlock(action, tlr, tlc, brr, brc, block);
-
-		}
-		scanner.close();
-
-	}
-
-	public static int[][] initialBlock(int row, int column) {
-		int[][] block = new int[row][column];
-		for (int i = 0; i < row; i++) {
-			for (int j = 0; j < column; j++) {
-				block[i][j] = 0;
-				matrix[i][j] = 0;
+			@Override
+			public int compare(Integer o1, Integer o2) {
+				return o1.compareTo(o2);
 			}
+
+		});
+		for (int x : nums) {
+			System.out.println(x);
 		}
 
-		return block;
-	}
-
-	public static boolean emptyBlcok(int[][] block, int tlr, int tlc, int brr,
-			int brc) {
-		for (int i = 0; i < block.length; i++) {
-			for (int j = 0; j < block[i].length; j++) {
-				if (block[i][j] == 0) {
-					return true;
-				}
-			}
-		}
-
-		return false;
-	}
-
-	public static int[][] artBlock(String action, int tlr, int tlc, int brr,
-			int brc, int[][] block) {
-
-		switch (action) {
-		case "a":
-			for (int i = tlr - 1; i <= brr - 1; i++) {
-				for (int j = tlc - 1; j <= brc - 1; j++) {
-					block[i][j]++;
-					// matrix[][];
-				}
-			}
-			break;
-
-		case "r":
-			for (int i = tlr - 1; i <= brr - 1; i++) {
-				for (int j = tlc - 1; j <= brc - 1; j++) {
-					block[i][j]--;
-					block[i][j] = (block[i][j] < 0) ? 0 : block[i][j];
-				}
-			}
-			break;
-
-		case "q":
-			System.out.println(sumBlock(block, tlr, tlc, brr, brc));
-			break;
-		}
-
-		return block;
-	}
-
-	public static int sumBlock(int[][] block, int tlr, int tlc, int brr,
-			int brc) {
-		int sum = 0;
-		for (int i = tlr - 1; i <= brr - 1; i++) {
-			for (int j = tlc - 1; j <= brc - 1; j++) {
-				sum += block[i][j];
-			}
-		}
-		return sum;
 	}
 
 }

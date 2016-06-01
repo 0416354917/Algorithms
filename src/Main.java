@@ -38,8 +38,6 @@ public class Main {
 		char ch = '去';
 		System.out.println(Integer.toBinaryString(new Integer((int) ch)));
 
-		String s = "test";
-
 	}
 
 }
