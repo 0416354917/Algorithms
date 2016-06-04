@@ -1,9 +1,5 @@
 package leetcode;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
-
 /**
  * Binary Tree Maximum Path Sum.
  * 
@@ -16,11 +12,16 @@ import java.util.List;
  * </p>
  * 
  * <p>
- * <b>Algorithm: </b>...
+ * <b>Algorithm: </b>Tree, Recursion.
  * </p>
  * 
  * <p>
- * <b>Status: </b>...
+ * <b>Reference: </b>
+ * {@link http://www.programcreek.com/2013/02/leetcode-binary-tree-maximum-path-sum-java/}
+ * </p>
+ * 
+ * <p>
+ * <b>Status: </b>Accepted.
  * </p>
  * 
  * @author Jason
@@ -38,37 +39,26 @@ public class Solution124 {
 		}
 	}
 
-	int ans = 0;
-
 	public int maxPathSum(TreeNode root) {
-		if (root == null) {
+		int[] max = { Integer.MIN_VALUE };
+		calculateSum(root, max);
+		return max[0];
+	}
+
+	public int calculateSum(TreeNode root, int[] max) {
+		if (root == null)
 			return 0;
-		} else {
-			List<Integer> arr = new ArrayList<Integer>();
 
-			int leftSum = maxPathSum(root.left);
-			int rightSum = maxPathSum(root.right);
+		int leftSum = calculateSum(root.left, max);
+		int rightSum = calculateSum(root.right, max);
 
-			// if (root.left != null) {
-			// arr.add(leftSum);
-			// }
-			//
-			// if (root.right != null) {
-			// arr.add(rightSum);
-			// }
+		int current = Math.max(root.val,
+				Math.max(root.val + leftSum, root.val + rightSum));
 
-			arr.add(root.val);
-			arr.add(leftSum + root.val);
-			arr.add(root.val + rightSum);
-			arr.add(leftSum + root.val + rightSum);
+		max[0] = Math.max(max[0],
+				Math.max(current, leftSum + root.val + rightSum));
 
-			Collections.sort(arr);
-			ans = Math.max(ans, arr.get(arr.size() - 1));
-
-			// return arr.get(arr.size() - 1);
-		}
-
-		return ans;
+		return current;
 	}
 
 	public static void main(String[] args) {
