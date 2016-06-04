@@ -27,7 +27,7 @@ import java.util.Set;
  * </p>
  * 
  * <p>
- * <b>Status: </b>TLE>
+ * <b>Status: </b>TLE.
  * </p>
  * 
  * @author Jason
@@ -47,17 +47,24 @@ public class Solution140 {
 	 */
 
 	public boolean bt(List<String> ans, String s, Set<String> wordDict,
-			List<String> ass, int index) {
+			List<String> ass, int index, int minLength, int maxLength) {
 		if (index == s.length()) {
 			ans.add(String.join(" ", ass));
 			return true;
 		}
 
-		for (int i = index; i < s.length(); i++) {
-			String sub = s.substring(index, i + 1);
-			if (wordDict.contains(sub)) {
-				ass.add(sub);
-				bt(ans, s, wordDict, ass, i + 1);
+		if (index + minLength > s.length())
+			return false;
+
+		StringBuffer sb = new StringBuffer(
+				s.substring(index, index + minLength - 1));
+
+		for (int i = index + minLength; i <= Math.min(s.length(),
+				index + maxLength); i++) {
+			sb.append(s.charAt(i - 1));
+			if (wordDict.contains(sb.toString())) {
+				ass.add(sb.toString());
+				bt(ans, s, wordDict, ass, i, minLength, maxLength);
 				ass.remove(ass.size() - 1);
 			}
 		}
@@ -69,8 +76,24 @@ public class Solution140 {
 		List<String> ans = new ArrayList<String>();
 
 		if (s != null && s.length() != 0) {
-			List<String> ass = new ArrayList<String>();
-			bt(ans, s, wordDict, ass, 0);
+			int minLength = Integer.MAX_VALUE, maxLength = -1;
+			for (String ss : wordDict) {
+				minLength = Math.min(minLength, ss.length());
+				maxLength = Math.max(maxLength, ss.length());
+			}
+
+			List<Set<Integer>> paths = new ArrayList<>();
+			for (int i = 0; i < s.length() - minLength; i++) {
+				int length = minLength;
+				StringBuffer sb = new StringBuffer(s.substring(i, i + length));
+				while (length < maxLength && i + length <= s.length()) {
+					// if()
+					length++;
+				}
+			}
+
+			// List<String> ass = new ArrayList<String>();
+			// bt(ans, s, wordDict, ass, 0, minLength, maxLength);
 		}
 
 		return ans;

@@ -12,3 +12,7 @@
 |#7| DFS |
 |#8| MST |
 |#9| Graph Algorithms |
+|#10| Prefix Tree |
+|#11| Suffix Tree |
+|#12| Binary Indexed Tree |
+|#13| Segment Tree |
