@@ -25,3 +25,7 @@ Once you’ve gotten all of those out of the way, implement this subset of the m
 * Dijkstra’s algorithm (without decrease-key)
 * Longest common subsequence (using dynamic programming with matrices)
 * Knapsack problem (also dynamic programming)
+
+## Links:
+[How to Break Into the Tech Industry—a Guide to Job Hunting and Tech Interviews](http://haseebq.com/how-to-break-into-tech-job-hunting-and-interviews/?utm_content=bufferc78f3&utm_medium=social&utm_source=facebook.com&utm_campaign=buffer)
+[LeetCode](https://leetcode.com/)
