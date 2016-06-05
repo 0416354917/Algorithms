@@ -1,7 +1,19 @@
+package leetcode;
+
 import java.util.ArrayList;
 import java.util.List;
 
-public class Solution {
+/**
+ * Walls and Gates.
+ * 
+ * <p>
+ * <b>Status: </b>Accepted.
+ * </p>
+ * 
+ * @author Jason
+ *
+ */
+public class Solution286 {
 
 	class Point {
 		int x;
@@ -73,7 +85,7 @@ public class Solution {
 				{ 0, -1, 2147483647, 2147483647 } };
 		printMatrix(rooms);
 		System.out.println();
-		Solution solution = new Solution();
+		Solution286 solution = new Solution286();
 		solution.wallsAndGates(rooms);
 		printMatrix(rooms);
 	}
