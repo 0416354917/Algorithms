@@ -1,5 +1,9 @@
 package leetcode;
 
+import java.util.ArrayList;
+import java.util.LinkedList;
+import java.util.List;
+
 /**
  * Helper.
  * 
@@ -79,20 +83,65 @@ public class Helper {
 		}
 	}
 
-	public static void main(String[] args) {
-		Helper solution = new Helper();
+	// Encodes a list of strings to a single string.
+	public String encode(List<String> strs) {
+		StringBuffer sb = new StringBuffer();
+		strs.stream().forEach(x -> sb.append(x.length() + "," + x + ","));
+		return sb.toString();
+	}
 
-		ListNode p1 = solution.new ListNode(1);
-		ListNode p2 = solution.new ListNode(2);
-		ListNode p3 = solution.new ListNode(3);
-		ListNode p4 = solution.new ListNode(3);
-		ListNode p5 = solution.new ListNode(2);
-		ListNode p6 = solution.new ListNode(2);
-		p1.next = p2;
-		p2.next = p3;
-		p3.next = p4;
-		p4.next = p5;
-		p5.next = p6;
+	// Decodes a single string to a list of strings.
+	public List<String> decode(String s) {
+		List<String> ans = new ArrayList<>();
+		int i = 0;
+		while (i < s.length()) {
+			StringBuffer sb = new StringBuffer();
+			while (i < s.length() && Character.isDigit(s.charAt(i))) {
+				sb.append(s.charAt(i));
+				i++;
+			}
+			int length = Integer.parseInt(sb.toString());
+
+			if (length != 0) {
+				int j = 0;
+				sb = new StringBuffer();
+				while (j < length) {
+					j++;
+					i++;
+					sb.append(s.charAt(i));
+				}
+				ans.add(sb.toString());
+				i++;
+			} else {
+				ans.add("");
+				i++;
+			}
+			i++;
+		}
+		return ans;
+	}
+
+	public static void main(String[] args) {
+		Helper sol = new Helper();
+
+		// for (int i = 0; i < 5; i++) {
+		// System.out.println(i + "a");
+		// if (i == 2) {
+		// i++;
+		// }
+		// }
+
+		List<String> strs = new ArrayList<>();
+		strs.add("0");
+		String code = sol.encode(strs);
+		System.out.println(code);
+
+		List<String> ans = sol.decode(code);
+		ans.stream().forEach(x -> System.out.println(x));
+		
+		LinkedList<TreeNode> sta = new LinkedList<>();
+//		sta.add
+
 	}
 
 }

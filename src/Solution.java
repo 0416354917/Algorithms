@@ -66,16 +66,24 @@ public class Solution {
 		}
 	}
 
+	public static List<String> generateAbbreviations(String word) {
+		List<String> ans = new ArrayList<>();
+		if (word == null)
+			return ans;
+		ans.add(word);
+		for (int i = 1; i <= word.length(); i++) {
+			for (int j = 0; j <= word.length() - i; j++) {
+//				StringBuffer sb = new StringBuffer();
+				String abbr = word.substring(0, j) + i + word.substring(j + i);
+				ans.add(abbr);
+			}
+		}
+		return ans;
+	}
+
 	public static void main(String[] args) {
-		int[][] rooms = { { 2147483647, -1, 0, 2147483647 },
-				{ 2147483647, 2147483647, 2147483647, -1 },
-				{ 2147483647, -1, 2147483647, -1 },
-				{ 0, -1, 2147483647, 2147483647 } };
-		printMatrix(rooms);
-		System.out.println();
-		Solution solution = new Solution();
-		solution.wallsAndGates(rooms);
-		printMatrix(rooms);
+		List<String> ans = generateAbbreviations("word");
+		ans.stream().forEach(x -> System.out.println(x + "  "));
 	}
 
 }
