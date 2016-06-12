@@ -139,8 +139,11 @@ public class Helper {
 		List<String> ans = sol.decode(code);
 		ans.stream().forEach(x -> System.out.println(x));
 
-		 LinkedList<TreeNode> sta = new LinkedList<>();
-//		 sta.
+		LinkedList<TreeNode> sta = new LinkedList<>();
+		// sta.
+		StringBuffer sb = new StringBuffer();
+		// sb.length();
+	
 
 	}
 
