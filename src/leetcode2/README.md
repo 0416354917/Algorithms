@@ -48,4 +48,4 @@
 47. Burst Balloons
 48. Super Ugly Number
 49. Max Sum of Rectangle No Larger Than K 
-50. Permutation Sequence
+50. Permutation Sequence (AC)
