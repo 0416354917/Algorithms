@@ -1,0 +1,10 @@
+# Mock 01:
+	:Date: 17/11/2016
+	:First Unique CHaracter in a String
+		:Easy
+	:Word Ladder
+		:Medium
+	:)
+
+
+
