@@ -16,16 +16,16 @@
 15. Water and Jug Problem
 16. N-Queens
 17. Edit Distance
-18. Word Search
+18. [Word Search](https://leetcode.com/problems/word-search) (AC)
 19. Verify Preorder Serialization of a Binary Tree
 20. Insert Delete GetRandom O(1)
 21. Sum of Two Integers
 22. Perfect Squares
 23. Scramble String
 24. Valid Number
-25. Majority Element
+25. [Majority Element](https://leetcode.com/problems/majority-element/) (AC)
 26. Count Complete Tree Nodes
-27. Word Search II
+27. [Word Search II](https://leetcode.com/problems/word-search-ii/) (?)
 28. Find Minimum in Rotated Sorted Array II
 29. Gas Station
 30. Binary Tree Maximum Path Sum
@@ -35,7 +35,7 @@
 34. Lowest Common Ancestor of a Binary Tree
 35. H-Index II
 36. Interleaving String
-37. Majority Element II
+37. [Majority Element II]() (?)
 38. Gray Code
 39. Remove Invalid Parentheses
 40. Find Median from Data Stream
